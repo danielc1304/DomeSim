@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dome Projection Previewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="ui-container">
+        <div class="control-group">
+            <label for="mapping-type">Tipo de Proyección:</label>
+            <select id="mapping-type">
+                <option value="equirect_21">Equirectangular 2:1</option>
+                <option value="equirect_169">Equirectangular 16:9</option>
+                <option value="fisheye_11">Fisheye Equidistant 1:1</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label>Configuración de Wireframe:</label>
+            <div class="wireframe-controls">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="wireframe-toggle" checked> 
+                    Mostrar Wireframe
+                </label>
+                <div class="color-input-wrapper">
+                    <label for="wireframe-color">Color:</label>
+                    <input type="color" id="wireframe-color" value="#00ff00">
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Guías de Domo:</label>
+            <div class="slider-wrapper">
+                <input type="range" id="guide-opacity" min="0" max="1" step="0.01" value="0">
+                <span id="guide-opacity-value">0%</span>
+            </div>
+        </div>
+
+        <div class="info-text">
+            Arrastra tu archivo al centro para cargarlo.<br>
+            Usa el mouse para orbitar la cámara.<br>
+            Ctrl o Cmmd + mouse para panear la cámara.<br>
+            Scroll para zoom.<br>
+        </div>
+    </div>
+
+    <div id="drop-zone">
+        <div id="drop-zone-text">Suelte la imagen aquí</div>
+    </div>
+
+    <!-- Import maps for Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
+</body>
+</html>
