@@ -14,8 +14,7 @@
             <select id="mapping-type">
                 <option value="equirect_21">Equirectangular 2:1</option>
                 <option value="equirect_169">Equirectangular 16:9</option>
-                <option value="fisheye_11">Fisheye Equidistant 1:1</option>
-                <option value="mjpeg-stream">MJPEG Stream (TouchDesigner)</option>
+                <option value="fisheye_11" selected>Fisheye Equidistant 1:1</option>
             </select>
         </div>
 
@@ -38,27 +37,6 @@
             <div class="slider-wrapper">
                 <input type="range" id="guide-opacity" min="0" max="1" step="0.01" value="0">
                 <span id="guide-opacity-value">0%</span>
-            </div>
-        </div>
-
-        <div class="control-group stream-config">
-            <label>Fuente de Contenido:</label>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <input type="text" id="stream-url" placeholder="URL del Stream MJPEG (ej: http://localhost:8080/stream.mjpeg)" style="flex-grow: 1; padding: 5px; border-radius: 4px; border: 1px solid #555; background: #333; color: white;">
-                <button id="connect-stream" style="padding: 5px 10px; cursor: pointer; background: #0078d7; border: none; border-radius: 4px; color: white;">Conectar</button>
-            </div>
-            <div class="help-tooltip">
-                <span id="help-icon" title="¿Cómo conectar el Stream?">?</span>
-                <div id="help-content" style="display: none; position: absolute; background: rgba(0, 0, 0, 0.9); padding: 15px; border-radius: 8px; z-index: 20; min-width: 300px;">
-    <strong style="color: #4CAF50;">Guía de Conexión MJPEG (TouchDesigner):</strong><br>
-    <p>Para que esta aplicación reciba un stream en tiempo real, debes configurar TouchDesigner para exponer el stream como una URL web accesible.</p>
-    <ol>
-        <li><strong>En TD:</strong> Utiliza un operador 'Movie File In' o 'Movie Stream'.</li>
-        <li><strong>Configuración del Stream:</strong> Asegúrate de que la fuente de video esté configurada correctamente (ej. cámara, archivo).</li>
-        <li><strong>Exponer URL:</strong> El método más sencillo es usar el nodo **Movie Stream** y obtener su URL de salida. Esta URL suele tener un formato como `http://localhost:8080/stream.mjpeg`.</li>
-        <li><strong>En esta App:</strong> Pega esa URL en el campo superior y haz clic en 'Conectar'. La aplicación cargará el stream automáticamente.</li>
-    </ol>
-</div>
             </div>
         </div>
 

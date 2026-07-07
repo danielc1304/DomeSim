@@ -95,10 +95,6 @@ function updateMapping() {
     } else if (type === 'fisheye_11') {
         applyFisheyeShader();
         return;
-    } else if (type === 'mjpeg-stream') {
-        // Handle MJPEG stream
-        connectMjpegStream();
-        return;
     }
 
     // Fix mirror effect for standard textures
@@ -290,55 +286,4 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-/**
- * Handles connecting to an MJPEG stream URL from TouchDesigner.
- */
-async function connectMjpegStream() {
-    const url = document.getElementById('stream-url').value;
-    if (!url) {
-        alert("Por favor, introduce una URL de stream válida.");
-        return;
-    }
-
-    // 1. Limpiar cualquier fuente actual (video o textura)
-    currentVideo = null;
-    currentTexture = null;
-    
-    // Detener y limpiar el domo si estaba usando un video/textura anterior
-    if (domeMesh && domeMesh.material) {
-        domeMesh.material.dispose();
-        domeMesh.material = new THREE.MeshBasicMaterial({ 
-            map: null, // Limpiar mapa
-            side: THREE.BackSide 
-        });
-    }
-
-    // 2. Intentar cargar el stream MJPEG como una textura de video
-    try {
-        const img = document.createElement('img');
-        img.crossOrigin = "Anonymous"; // Necesario para cargar imágenes desde otro dominio
-        img.onload = () => {
-            console.log("Imagen inicial cargada, esperando stream...");
-            // El navegador manejará la actualización del stream en el elemento <img />
-            currentTexture = new THREE.VideoTexture(img);
-            domeMesh.material = new THREE.MeshBasicMaterial({ 
-                map: currentTexture, 
-                side: THREE.BackSide 
-            });
-            updateMapping(); // Actualiza la proyección con la nueva textura
-        };
-
-        // Usamos un evento 'error' para manejar fallos de conexión o CORS
-        img.onerror = () => {
-            alert("Error al cargar el stream. Asegúrate de que la URL es accesible y que los permisos CORS están configurados correctamente en el servidor.");
-            console.error("Stream connection failed:", url);
-        };
-
-        // Intentar establecer la fuente del stream (esto puede requerir un manejo más avanzado 
-        // o librerías específicas, pero para una implementación web simple, se intenta cargar como imagen)
-        img.src = url;
-
-    } catch (e) {
-        alert("Error al intentar conectar el stream: " + e.message);
-    }
-}
+// The function connectMjpegStream has been removed as requested by the user.
